@@ -1,0 +1,13 @@
+CREATE USER 'admin'@'localhost' IDENTIFIED BY '134679';
+FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION;
+CREATE USER 'admin'@'%' IDENTIFIED BY '134679';
+FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;
+CREATE USER  'php'@'localhost' identified by '12345678';
+GRANT ALL PRIVILEGES ON miphp.* TO php@localhost;
+FLUSH PRIVILEGES;
+create database miphp;
+create database hola2;
+use miphp;
+CREATE TABLE  IF NOT EXISTS clientes (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, nombre VARCHAR(30), apellido VARCHAR(30), suscripcion_activa CHAR(1), vencimiento_contrato DATE);
