@@ -31,6 +31,10 @@ DELIMITER $$
 CREATE TRIGGER `trg_users` AFTER INSERT ON `users` FOR EACH ROW INSERT INTO `backup_modificaciones` (`id`, `nombre_tabla`, `situacion`, `fecha`, `validacion`) VALUES (new.id, 'users', 'NA', CURDATE(), 'INSERT')
 $$
 DELIMITER ;
+SET GLOBAL event_scheduler = ON;
+SET @@GLOBAL.event_scheduler = ON;
+SET GLOBAL event_scheduler = 1;
+SET @@GLOBAL.event_scheduler = 1;
 DELIMITER $$
 CREATE TRIGGER `trg_users_update` BEFORE UPDATE ON `users` FOR EACH ROW INSERT INTO `backup_modificaciones` (`id`, `nombre_tabla`, `situacion`, `fecha`, `validacion`) VALUES (new.id, 'users', 'NA', CURDATE(), 'UPDATE')
 $$
@@ -80,9 +84,8 @@ DELIMITER $$
 CREATE DEFINER=`admin`@`%` EVENT `crearRespaldo` ON SCHEDULE EVERY 5 MINUTE STARTS '2019-10-25 00:00:00' ENDS '2019-10-26 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO CALL `crearArchivo`('users')$$
 
 DELIMITER ;
-SET GLOBAL event_scheduler="ON";
+
 
 COMMIT;
-
 
 
