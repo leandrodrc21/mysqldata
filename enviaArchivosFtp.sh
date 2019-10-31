@@ -1,5 +1,5 @@
 #! /bin/sh
-ftp -n 192.168.1.135 <<EOF
+ftp -n 192.168.1.142 <<EOF
 user doker 12345678
 binary 
 prompt
